@@ -3,6 +3,9 @@ var moment = require("moment");
 var fs = require("fs");
 var path = require("path");
 
+/** バインド先IPアドレス */
+var BIND_ADDRESS = "127.0.0.1";
+/** 待ち受けポート */
 var PORT = 8888;
 
 /**
@@ -53,17 +56,20 @@ var server = require("http").createServer(function(request, response) {
 		response.end();
 	});
 });
-server.listen(PORT, "127.0.0.1", function() {
+//HTTPサーバー起動
+server.listen(PORT, BIND_ADDRESS, function() {
     log("Server is listening... Press Ctrl-C for quit server.");
 });
 
 /**
- * WebSocket
+ * WebSocket（HTTPサーバーからのUPGRADEで使う）
  */
 var socket = require("socket.io")(server);
+//WebSocketのイベント
 socket.on("connection", function(s){
-	//接続した
+	//クライアントが接続した
 	log("Connected.");
+	//個々のクライアントに対するイベント設定
 	s.on("event", function(data){
 		//イベント発生
 		log("Event raised.");
