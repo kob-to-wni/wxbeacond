@@ -88,13 +88,3 @@ bleacon.on('discover', function(beacon) {
 });
 //ビーコン検索開始
 bleacon.startScanning("c722db4c5d911801beb5001c4de7b3fd");
-
-setInterval(function(){
-	var beacon = {
-		rssi: -1 * Math.floor(Math.random() * 100)
-	};
-	var temperature = 25 + Math.floor(Math.random() * 10) / 10;
-	var humidity = 50 + Math.floor(Math.random() * 10 - 5) / 10;
-	var pressure = 1013 + Math.floor(Math.random() * 10 - 5) / 10;
-	socket.sockets.emit("data", '{ "rssi": ' + beacon.rssi + ', "temperature": ' + temperature + ', "humidity": ' + humidity + ', "pressure": ' + pressure + ' }');
-}, 1000);
