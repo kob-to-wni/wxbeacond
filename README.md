@@ -21,6 +21,8 @@ WxBeaconのデータをWebSocket経由でブラウザに送ることで、ブラ
 node wxbeacond.js
 ```
 
+でサーバーを起動したあとに、ブラウザで、http://localhost:8888/ にアクセス。
+
 ## ライセンス
 
 MIT
