@@ -90,6 +90,15 @@ bleacon.on('discover', function(beacon) {
 
 	//送信
 	socket.sockets.emit("data", data);
+	
+	//ログ保存
+	var logCSV = [
+		moment().format("YYYY/MM/DD HH:mm:ss"),
+		data.temperature,
+		data.humidity,
+		data.pressure
+	].join(",");
+	fs.appendFileSync("log.csv", logCSV + "\r\n", "UTF-8");
 });
 //ビーコン検索開始
 bleacon.startScanning(wxbeacon.UUID);
